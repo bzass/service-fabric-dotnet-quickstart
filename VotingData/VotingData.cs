@@ -3,6 +3,9 @@
 //  Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
+using System;
+using System.Diagnostics;
+
 namespace VotingData
 {
     using System.Collections.Generic;
@@ -39,7 +42,7 @@ namespace VotingData
                             serviceContext,
                             (url, listener) =>
                             {
-                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
+                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}, PID: {Process.GetCurrentProcess().Id}, AppDomain: {AppDomain.CurrentDomain.Id}");
 
                                 return new WebHostBuilder()
                                     .UseKestrel()
@@ -50,7 +53,7 @@ namespace VotingData
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
                                     .UseApplicationInsights()
-                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
+                                    .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl | ServiceFabricIntegrationOptions.UseReverseProxyIntegration)
                                     .UseUrls(url)
                                     .Build();
                             }))

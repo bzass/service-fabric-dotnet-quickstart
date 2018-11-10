@@ -3,6 +3,8 @@
 //  Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace VotingWeb
 {
     using System;
@@ -41,7 +43,7 @@ namespace VotingWeb
                             "ServiceEndpoint",
                             (url, listener) =>
                             {
-                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
+                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}, PID: {Process.GetCurrentProcess().Id}");
 
                                 return new WebHostBuilder()
                                     .UseKestrel()
