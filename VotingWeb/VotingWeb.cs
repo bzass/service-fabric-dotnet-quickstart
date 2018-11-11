@@ -4,6 +4,8 @@
 // ------------------------------------------------------------
 
 using System.Diagnostics;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.ServiceFabric;
 
 namespace VotingWeb
 {
@@ -43,7 +45,7 @@ namespace VotingWeb
                             "ServiceEndpoint",
                             (url, listener) =>
                             {
-                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}, PID: {Process.GetCurrentProcess().Id}");
+                                ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}, PID: {Process.GetCurrentProcess().Id}, InstrumentationKey: {Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY")}");
 
                                 return new WebHostBuilder()
                                     .UseKestrel()
@@ -51,7 +53,8 @@ namespace VotingWeb
                                         services => services
                                             .AddSingleton<HttpClient>(new HttpClient())
                                             .AddSingleton<FabricClient>(new FabricClient())
-                                            .AddSingleton<StatelessServiceContext>(serviceContext))
+                                            .AddSingleton<StatelessServiceContext>(serviceContext)
+                                            .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext)))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
                                     .UseApplicationInsights()

@@ -7,5 +7,6 @@
     <Parameter Name="VotingData_MinReplicaSetSize" Value="2" />
     <Parameter Name="VotingData_TargetReplicaSetSize" Value="3" />
     <Parameter Name="VotingWeb_InstanceCount" Value="-1" />
+    <Parameter Name="APPINSIGHTS_INSTRUMENTATIONKEY" Value="78005591-391a-4777-9dee-57dcc8440bf8" />
   </Parameters>
 </Application>

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VotingType" ApplicationTypeVersion="19.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VotingType" ApplicationTypeVersion="22.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
     <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="APPINSIGHTS_INSTRUMENTATIONKEY" DefaultValue="" />
     <Parameter Name="ReportGenerator_MinReplicaSetSize" DefaultValue="2" />
     <Parameter Name="ReportGenerator_PartitionCount" DefaultValue="1" />
     <Parameter Name="ReportGenerator_TargetReplicaSetSize" DefaultValue="3" />
@@ -15,21 +16,23 @@
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="ReportGeneratorPkg" ServiceManifestVersion="6.0.0" />
+    <ServiceManifestRef ServiceManifestName="ReportGeneratorPkg" ServiceManifestVersion="8.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="APPINSIGHTS_INSTRUMENTATIONKEY" Value="[APPINSIGHTS_INSTRUMENTATIONKEY]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="VotingDataPkg" ServiceManifestVersion="9.0.0" />
+    <ServiceManifestRef ServiceManifestName="VotingDataPkg" ServiceManifestVersion="11.0.0" />
     <ConfigOverrides />
     <EnvironmentOverrides CodePackageRef="code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="APPINSIGHTS_INSTRUMENTATIONKEY" Value="[APPINSIGHTS_INSTRUMENTATIONKEY]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="VotingWebPkg" ServiceManifestVersion="7.0.0" />
+    <ServiceManifestRef ServiceManifestName="VotingWebPkg" ServiceManifestVersion="10.0.0" />
     <ConfigOverrides />
     <ResourceOverrides>
       <Endpoints>
@@ -38,6 +41,7 @@
     </ResourceOverrides>
     <EnvironmentOverrides CodePackageRef="code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]" />
+      <EnvironmentVariable Name="APPINSIGHTS_INSTRUMENTATIONKEY" Value="[APPINSIGHTS_INSTRUMENTATIONKEY]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
   <DefaultServices>
