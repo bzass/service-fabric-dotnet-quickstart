@@ -10,25 +10,33 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
             }, function (data, status) {
                 $scope.votes = undefined;
             });
+
+        $http.get('api/Votes/Report').then(function (data, status) {
+            $scope.report = data.data;
+        }, function (data, status) {
+            $scope.report = 0;
+        });
     };
 
     $scope.remove = function (item) {
         $http.delete('api/Votes/' + item)
-            .then(function (data, status) {
+            .then(function(data, status) {
                 $scope.refresh();
-            })
+            });
     };
 
     $scope.add = function (item) {
         var fd = new FormData();
         fd.append('item', item);
-        $http.put('api/Votes/' + item, fd, {
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
-        })
-            .then(function (data, status) {
+        $http.put('api/Votes/' + item,
+                fd,
+                {
+                    transformRequest: angular.identity,
+                    headers: { 'Content-Type': undefined }
+                })
+            .then(function(data, status) {
                 $scope.refresh();
                 $scope.item = undefined;
-            })
+            });
     };
 }]);

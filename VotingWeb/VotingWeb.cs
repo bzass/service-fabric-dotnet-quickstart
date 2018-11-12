@@ -69,11 +69,20 @@ namespace VotingWeb
         /// Constructs a service name for a specific poll.
         /// Example: fabric:/VotingApplication/polls/name-of-poll
         /// </summary>
-        /// <param name="poll"></param>
         /// <returns></returns>
         internal static Uri GetVotingDataServiceName(ServiceContext context)
         {
             return new Uri($"{context.CodePackageActivationContext.ApplicationName}/VotingData");
+        }
+
+        /// <summary>
+        /// Constructs a service name for a specific poll.
+        /// Example: fabric:/VotingApplication/polls/name-of-poll
+        /// </summary>
+        /// <returns></returns>
+        internal static Uri GetReportgGeneratorServiceName(ServiceContext context)
+        {
+            return new Uri($"{context.CodePackageActivationContext.ApplicationName}/ReportGenerator");
         }
     }
 }

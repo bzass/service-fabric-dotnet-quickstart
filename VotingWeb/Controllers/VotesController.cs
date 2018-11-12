@@ -64,6 +64,25 @@ namespace VotingWeb.Controllers
             return this.Json(result);
         }
 
+        // GET: api/Votes
+        [HttpGet("Report")]
+        public async Task<IActionResult> GetReport()
+        {
+            Uri serviceName = VotingWeb.GetReportgGeneratorServiceName(this.serviceContext);
+            Uri proxyAddress = this.GetProxyAddress(serviceName);
+
+            string proxyUrl = $"{proxyAddress}/api/Report/NumberOfVotes";
+
+            var response = await this.httpClient.GetAsync(proxyUrl);
+            if (!response.IsSuccessStatusCode)
+            {
+                return this.NoContent();
+            }
+
+            var result = await response.Content.ReadAsStringAsync();
+            return Ok(result);
+        }
+
         // PUT: api/Votes/name
         [HttpPut("{name}")]
         public async Task<IActionResult> Put(string name)
