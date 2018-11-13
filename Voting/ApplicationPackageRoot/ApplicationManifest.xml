@@ -3,11 +3,10 @@
   <Parameters>
     <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="APPINSIGHTS_INSTRUMENTATIONKEY" DefaultValue="" />
-    <Parameter Name="ReportGenerator_MinReplicaSetSize" DefaultValue="2" />
-    <Parameter Name="ReportGenerator_PartitionCount" DefaultValue="1" />
+    <Parameter Name="ReportGenerator_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="ReportGenerator_TargetReplicaSetSize" DefaultValue="3" />
-    <Parameter Name="VotingData_MinReplicaSetSize" DefaultValue="2" />
-    <Parameter Name="VotingData_PartitionCount" DefaultValue="10" />
+    <Parameter Name="VotingData_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="VotingData_PartitionCount" DefaultValue="1" />
     <Parameter Name="VotingData_TargetReplicaSetSize" DefaultValue="3" />
     <Parameter Name="VotingWeb_InstanceCount" DefaultValue="-1" />
   </Parameters>

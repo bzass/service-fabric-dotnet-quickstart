@@ -4,7 +4,6 @@
     <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development" />
     <Parameter Name="ReportGenerator_MinReplicaSetSize" Value="1" />
     <Parameter Name="ReportGenerator_TargetReplicaSetSize" Value="1" />
-    <Parameter Name="VotingData_PartitionCount" Value="1" />
     <Parameter Name="VotingData_MinReplicaSetSize" Value="1" />
     <Parameter Name="VotingData_TargetReplicaSetSize" Value="1" />
     <Parameter Name="VotingWeb_InstanceCount" Value="1" />
