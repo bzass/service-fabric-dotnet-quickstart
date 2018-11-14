@@ -36,7 +36,7 @@ while($true)
             $events.Add($e.TimeStampUtc.Ticks, $e)
             if($e -is [System.Fabric.Chaos.DataStructures.ValidationFailedEvent])
             {
-                Write-Host -BackgroundColor White -ForegroundColor Red $e
+                Write-Host -ForegroundColor Red $e
             }
             else
             {
