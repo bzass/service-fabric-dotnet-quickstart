@@ -1,7 +1,7 @@
 ## Connect to cluster:
 
 ```
-Connect-ServiceFabricCluster -ConnectionEndpoint mstraining2.westeurope.cloudapp.azure.com:19000 -X509Credential -ServerCertThumbprint <certThumbprintFromKV> -FindType FindByThumbprint -FindValue <certThumbprintFromKV> -StoreLocation CurrentUser -StoreName My
+Connect-ServiceFabricCluster -ConnectionEndpoint <clusterFQDN>:19000 -X509Credential -ServerCertThumbprint <certThumbprintFromKV> -FindType FindByThumbprint -FindValue <certThumbprintFromKV> -StoreLocation CurrentUser -StoreName My
 ```
 
 ## Deploy new instance of an app
